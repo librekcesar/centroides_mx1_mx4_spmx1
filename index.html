@@ -65,6 +65,7 @@
         <div><span style="background-color: #ecb20a; width: 20px; height: 20px; display: inline-block; border-radius: 50%;"></span> Categoría 7: Polígonos de las estaciones</div>
         <div><span style="background-color: #4c5ed1; width: 20px; height: 20px; display: inline-block; border-radius: 50%;"></span> Categoría 8: Isocrona a 20 minutos de MX4</div>
         <div><span style="background-color: #4c5ed1; width: 20px; height: 20px; display: inline-block; border-radius: 50%;"></span> Categoría 9: Isocrona a 20 minutos de MX1</div>
+        <div><span style="background-color: #e5450d; width: 20px; height: 20px; display: inline-block; border-radius: 50%;"></span> Categoría 10: Radio de 2km del centroide de todas las estaciones</div>
        
     </div>
     
@@ -83,6 +84,7 @@
    
     <script src="isocrona_20min_spmx1.js"></script>
     <script src="poligonos_estaciones_muestra.js"></script>
+    <script src="buffer_todas.js"></script>
     
 
     <script>
@@ -111,6 +113,8 @@
     var poligono4 = isomx4;
 
     var poligono5 = isomx1;
+
+    var poligono6 = bufftodas;
 
     // Crear el mapa centrado en una ubicación específica
     var map = new L.Map('map', {zoom: 12, center: new L.latLng([19.415895, -99.1366]) });
@@ -180,6 +184,7 @@
     var capaPoligonos3 = crearCapaPoligonos(poligono3, "#ecb20a");
     var capaPoligonos4 = crearCapaPoligonos(poligono4, "#4c5ed1");
     var capaPoligonos5 = crearCapaPoligonos(poligono5, "#4c5ed1");
+    var capaPoligonos6 = crearCapaPoligonos(poligono6, "#e5450d");
     ///
 
     // Añadir las capas al mapa
@@ -194,6 +199,7 @@
     map.addLayer(capaPoligonos3);
     map.addLayer(capaPoligonos4);
     map.addLayer(capaPoligonos5);
+    map.addLayer(capaPoligonos6);
 
     // Añadir control de capas
     var overlays = {
@@ -207,7 +213,8 @@
         "Isocrona SPMX1":capaPoligonos2,
         "Polígonos estaciones":capaPoligonos3,
         "Isocrona MX4":capaPoligonos4,
-        "Isocrona MX1":capaPoligonos5
+        "Isocrona MX1":capaPoligonos5,
+        "Radio centroide todas las estaciones":capaPoligonos6
     };
 
     L.control.layers(null, overlays, {collapsed: false}).addTo(map);
